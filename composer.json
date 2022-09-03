@@ -1,0 +1,70 @@
+{
+  "name": "dumetskiy/spreadsheet",
+  "type": "project",
+  "license": "proprietary",
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=8.1",
+    "symfony/console": "6.2.*",
+    "symfony/dotenv": "6.2.*",
+    "symfony/finder": "6.2.*",
+    "symfony/flex": "2.2.*",
+    "symfony/framework-bundle": "6.2.*",
+    "symfony/http-client": "6.2.*",
+    "symfony/monolog-bundle": "3.x-dev",
+    "symfony/property-access": "6.2.*",
+    "symfony/runtime": "6.2.*",
+    "symfony/serializer": "6.2.*",
+    "symfony/validator": "6.2.*",
+    "symfony/yaml": "6.2.*"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "dev-master",
+    "phpstan/phpstan": "1.8.x-dev",
+    "phpstan/phpstan-deprecation-rules": "1.1.x-dev",
+    "phpstan/phpstan-phpunit": "1.1.x-dev",
+    "phpstan/phpstan-symfony": "1.2.x-dev"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "symfony/flex": true,
+      "symfony/runtime": true
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Spreadsheet\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Spreadsheet\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "auto-scripts": {
+      "cache:clear": "symfony-cmd"
+    },
+    "post-install-cmd": [
+      "@auto-scripts"
+    ],
+    "post-update-cmd": [
+      "@auto-scripts"
+    ],
+    "cs-fix": "./bin/php-cs-fix",
+    "cs-check": "./bin/php-cs-check",
+    "phpstan-analyse": "./bin/phpstan-analyse",
+    "phpunit": "./bin/phpunit"
+  },
+  "conflict": {
+    "symfony/symfony": "*"
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": false,
+      "require": "6.2.*"
+    }
+  }
+}
