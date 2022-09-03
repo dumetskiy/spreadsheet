@@ -7,4 +7,4 @@ composer install --prefer-dist --no-progress --no-interaction
 bin/console cache:clear
 bin/console cache:warmup
 
-echo "$@"
+bash -c "sh /app/bin/$*"

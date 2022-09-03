@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 RUN docker-php-ext-install zip
 
 RUN set -eux; \
-	composer clear-cache \
+	composer clear-cache
 
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 
