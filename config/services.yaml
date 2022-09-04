@@ -1,5 +1,39 @@
 parameters:
+  spreadsheet.configuration.allowed_sources:
+    - file
+    - ftp
+    - http
+    - https
+
+  spreadsheet.configuration.allowed_destinations:
+    - google_sheets
+
+  spreadsheet.configuration.allowed_data_types:
+    - xml
+    - csv
+
 services:
     _defaults:
         autowire: true
         autoconfigure: true
+
+    _instanceof:
+      Spreadsheet\Loader\DataLoaderInterface:
+        tags: ['spreadsheet.data_loader']
+
+      Spreadsheet\Parser\DataParserInterface:
+        tags: ['spreadsheet.data_parser']
+
+      Spreadsheet\Publisher\SpreadsheetPublisherInterface:
+        tags: ['spreadsheet.publisher']
+
+    Spreadsheet\:
+      resource: '../src/'
+      exclude:
+        - '../src/DependencyInjection/'
+        - '../src/Exception/'
+        - '../src/Kernel.php'
+
+    Spreadsheet\ValueObject\Configuration\ApplicationConfiguration:
+      factory: '@Spreadsheet\Factory\Configuration\ApplicationConfigurationFactory'
+      class: Spreadsheet\ValueObject\Configuration\ApplicationConfiguration
