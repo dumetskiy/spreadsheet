@@ -96,6 +96,9 @@ There is a number of features which are honestly missing from the application ri
 
 Unfortunately this is something I had to sacrifice for the sake of time and somehow decent application design, and I feel like solving all of those within the time I had would not be possible anyway.
 
+There is no limit of perfection, this task can be done within one evening, or it can take weeks depending on how well-designed and detailed you want it to be. 
+But within a limited time frame the best thing you can do is to decide what are the most important features you can fit into it and do your best to meet the deadline.
+
 ##How it works
 
 The application was designed with a purpose of maximum flexibility and extensibility. 
@@ -122,3 +125,12 @@ This gives maximum configurability allowing you to use any combination of source
 Those configurations are referencing the three enums cases: `FileSource`, `FileDestination`, `DataType`
 
 Those same enums cases wrapped into `DataLoader`, `SpreadsheetPublisher` and `DataParser` attributes accordingly allow to map the concrete service to a certain source, destination or a data type.
+
+Using data types as an example the process of extending the functionality is really simple:
+
+1. Create a new class implementing `DataParserInterface` and configure the data parsing in it.
+2. Add a new case representing this type into the `DataType` enum
+3. Add a `DataParser` attribute to your new class and pass the new `DataType` case into it as an argument
+4. Whitelist your new data type by adding it to the `spreadsheet.configuration.allowed_data_types` parameter.
+
+And you are all set to start using your new data type parser with the command.
