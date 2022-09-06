@@ -18,6 +18,7 @@ class IsAllowedFileSourceValidator extends ConstraintValidator
     ) {}
 
     /**
+     * @param string $value
      * @param IsAllowedFileSource $constraint
      */
     public function validate($value, Constraint $constraint): void

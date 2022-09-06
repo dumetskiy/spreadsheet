@@ -1,0 +1,25 @@
+parameters:
+  spreadsheet.google.api.scopes:
+    - 'https://www.googleapis.com/auth/spreadsheets'
+  spreadsheet.google.api.credentials_path: '%kernel.project_dir%/secrets/%env(string:GOOGLE_API_CREDENTIALS_PATH)%'
+  spreadsheet.google.api.config:
+    scopes: '%spreadsheet.google.api.scopes%'
+    credentials: '%spreadsheet.google.api.credentials_path%'
+  spreadsheet.google.api.sheet.chunk_size: 100
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  spreadsheet.google.client:
+    class: Google\Client
+    arguments:
+      $config: '%spreadsheet.google.api.config%'
+    calls:
+      - setLogger: ['@logger']
+
+  spreadsheet.google.service.sheets:
+    class: Google\Service\Sheets
+    arguments:
+      $clientOrConfig: '@spreadsheet.google.client'

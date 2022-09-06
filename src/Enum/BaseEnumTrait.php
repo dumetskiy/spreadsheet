@@ -28,7 +28,7 @@ trait BaseEnumTrait
                 fn (string $allowedSourceHandle) => static::from($allowedSourceHandle),
                 $values
             );
-        } catch (\ValueError) {
+        } catch (\ValueError|\TypeError) {
             throw EnumException::create(sprintf(
                 'Provided enum value does not exist, available options: %s',
                 implode(',', self::allValues()),

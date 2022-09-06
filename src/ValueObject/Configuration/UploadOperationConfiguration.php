@@ -6,7 +6,6 @@ namespace Spreadsheet\ValueObject\Configuration;
 
 use Spreadsheet\Enum\DataType;
 use Spreadsheet\Enum\FileDestination;
-use Spreadsheet\Enum\FileSource;
 use Spreadsheet\Validator\Configuration\IsAllowedDataType;
 use Spreadsheet\Validator\Configuration\IsAllowedDestination;
 use Spreadsheet\Validator\Configuration\IsAllowedFileSource;

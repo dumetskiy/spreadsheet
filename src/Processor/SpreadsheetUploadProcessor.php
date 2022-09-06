@@ -33,8 +33,7 @@ class SpreadsheetUploadProcessor
         $constraintViolationsList = $this->validator->validate($uploadOperationConfiguration);
 
         if ($constraintViolationsList->count()) {
-            $errorMessages = array_map(fn (ConstraintViolationInterface $constraintViolation)
-                => $constraintViolation->getMessage(), iterator_to_array($constraintViolationsList));
+            $errorMessages = array_map(fn (ConstraintViolationInterface $constraintViolation) => $constraintViolation->getMessage(), iterator_to_array($constraintViolationsList));
 
             throw ValidationException::create(sprintf(
                 'Constraint violations detected when validating the upload operation configuration: %s',

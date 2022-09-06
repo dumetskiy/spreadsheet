@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Spreadsheet\Factory\Strategy;
 
+use Psr\Log\LoggerInterface;
 use Spreadsheet\Exception\Configuration\ConfigurationException;
 use Spreadsheet\Factory\DataLoader\DataLoaderFactory;
 use Spreadsheet\Factory\DataParser\DataParserFactory;
@@ -18,6 +19,7 @@ class SpreadsheetUploadStrategyFactory
         private readonly DataLoaderFactory $dataLoaderFactory,
         private readonly DataParserFactory $dataParserFactory,
         private readonly SpreadsheetPublisherFactory $publisherFactory,
+        private readonly LoggerInterface $logger,
     ) {}
 
     public function buildFromUploadOperationConfiguration(
@@ -37,6 +39,7 @@ class SpreadsheetUploadStrategyFactory
             $this->dataLoaderFactory->getForSource($fileSourceType),
             $this->dataParserFactory->getForDataType($uploadOperationConfiguration->dataType),
             $this->publisherFactory->getForDestination($uploadOperationConfiguration->fileDestination),
+            $this->logger,
         );
     }
 }

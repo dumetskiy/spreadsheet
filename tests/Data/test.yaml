@@ -1,0 +1,4 @@
+root_key:
+    child_key: child_value
+    child_object_key:
+        key: value

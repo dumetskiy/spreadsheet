@@ -8,7 +8,7 @@ use Spreadsheet\Enum\FileSource;
 
 class FileSourceParser
 {
-    private const SOURCE_DSN_REGEXP = '/^(?<source_type>[A-Za-z]*):\/\/.*$/';
+    private const SOURCE_DSN_REGEXP = '/^(?<source_type>[A-Za-z]*):\/\/.+$/';
 
     public static function getSourceTypeFromSource(string $sourcePath): ?FileSource
     {

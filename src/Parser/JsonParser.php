@@ -6,6 +6,7 @@ namespace Spreadsheet\Parser;
 
 use Spreadsheet\Attribute\DataParser;
 use Spreadsheet\Enum\DataType;
+use Spreadsheet\Exception\Parser\ParserException;
 use Spreadsheet\ValueObject\Spreadsheet;
 use Spreadsheet\ValueObject\SpreadsheetFile;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -17,9 +18,12 @@ class JsonParser implements DataParserInterface
 
     public function parseFileData(SpreadsheetFile $spreadsheetFile, DataType $dataType): Spreadsheet
     {
-        return new Spreadsheet(
-            $spreadsheetFile,
-            $this->decodeContents($spreadsheetFile->content, JsonEncoder::FORMAT),
-        );
+        $spreadsheetData = $this->decodeContents($spreadsheetFile->content, JsonEncoder::FORMAT);
+
+        if (!is_array($spreadsheetData) || empty($spreadsheetData)) {
+            throw ParserException::create('Source file content data structure is not applicable as a spreadsheet.');
+        }
+
+        return new Spreadsheet($spreadsheetFile, $spreadsheetData);
     }
 }

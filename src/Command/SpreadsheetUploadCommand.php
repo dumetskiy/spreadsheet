@@ -74,12 +74,12 @@ class SpreadsheetUploadCommand extends Command
             $this->logger->info('Processing command input...');
             $uploadOperationConfiguration = $this->commandConfigurationFactory->createFromCommandInput($input);
             $this->spreadsheetUploadProcessor->process($uploadOperationConfiguration);
+            $this->logger->notice('Spreadsheet successfully uploaded.');
 
             return self::SUCCESS;
         } catch (SpreadsheetException $exception) {
             $this->logger->error($exception->getMessage());
-        } catch (\Throwable $t) {
-            throw $t;
+        } catch (\Throwable) {
             $this->logger->error('Unhandled error occurred');
         }
 

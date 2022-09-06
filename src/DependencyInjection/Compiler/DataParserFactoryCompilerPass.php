@@ -6,7 +6,6 @@ namespace Spreadsheet\DependencyInjection\Compiler;
 
 use Spreadsheet\Attribute\DataParser;
 use Spreadsheet\Exception\DependencyInjection\DependencyInjectionException;
-use Spreadsheet\Factory\DataLoader\DataLoaderFactory;
 use Spreadsheet\Factory\DataParser\DataParserFactory;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

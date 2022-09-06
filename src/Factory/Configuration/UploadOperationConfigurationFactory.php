@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Spreadsheet\Factory\Configuration;
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Spreadsheet\Enum\Command\Argument;
 use Spreadsheet\Enum\Command\Option;
 use Spreadsheet\Enum\DataType;
@@ -13,11 +15,14 @@ use Spreadsheet\ValueObject\Configuration\UploadOperationConfiguration;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
 
-class UploadOperationConfigurationFactory
+class UploadOperationConfigurationFactory implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     public function createFromCommandInput(InputInterface $input): UploadOperationConfiguration
     {
         try {
+            $this->logger->info('Gathering configuration information...');
             $fileDestinationHandle = $input->getOption(Option::DESTINATION->value);
             $fileDestination = FileDestination::tryFrom($fileDestinationHandle);
 
@@ -35,6 +40,8 @@ class UploadOperationConfigurationFactory
                     'Invalid value "%s" provided for file data type', $dataTypeHandle
                 ));
             }
+
+            $this->logger->info('Configuration gathered successfully.');
 
             return new UploadOperationConfiguration(
                 $input->getArgument(Argument::SOURCE->value),

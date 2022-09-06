@@ -11,4 +11,8 @@ parameters:
         - src
     excludePaths:
         - src/tests/*
+        - src/Parser/SerializerAwareParserTrait.php
+        - src/ValueObject/*
     inferPrivatePropertyTypeFromConstructor: true
+    ignoreErrors:
+        - '#^Cannot call method [a-z]+() on Psr\\Log\\LoggerInterface|null.$#'

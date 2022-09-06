@@ -13,17 +13,18 @@ use Symfony\Contracts\Service\Attribute\Required;
 trait SerializerAwareParserTrait
 {
     /**
+     * @phpstan-ignore-next-line
      * @var SerializerInterface|DecoderInterface
      */
     protected SerializerInterface $serializer;
 
     #[Required]
-    public function setSerializer(SerializerInterface $serializer)
+    public function setSerializer(SerializerInterface $serializer): void
     {
         $this->serializer = $serializer;
     }
 
-    private function decodeContents(string $contents, string $format): array
+    private function decodeContents(string $contents, string $format): mixed
     {
         try {
             if (!$this->serializer->supportsDecoding($format)) {
@@ -34,7 +35,7 @@ trait SerializerAwareParserTrait
             }
 
             return $this->serializer->decode($contents, $format);
-        } catch (UnexpectedValueException) {
+        } catch (UnexpectedValueException|\RuntimeException) {
             throw ParserException::create(sprintf(
                 'Failed to decode spreadsheet file contents with format "%s"',
                 $format

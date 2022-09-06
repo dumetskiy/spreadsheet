@@ -10,6 +10,7 @@ use Spreadsheet\Exception\Filesystem\FileAccessException;
 use Spreadsheet\Exception\Filesystem\FileLocationAmbiguityException;
 use Spreadsheet\Exception\Filesystem\FileNotFoundException;
 use Spreadsheet\ValueObject\SpreadsheetFile;
+use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -32,11 +33,20 @@ class FileLoader implements DataLoaderInterface
 
     public function load(string $fileSource): SpreadsheetFile
     {
-        $fileName = pathinfo($fileSource, PATHINFO_BASENAME);
-        $fileLocationPath = pathinfo($fileSource, PATHINFO_DIRNAME);
+        $fileName = pathinfo($fileSource, \PATHINFO_BASENAME);
+        $fileLocationPath = pathinfo($fileSource, \PATHINFO_DIRNAME);
 
-        $files = $this->finder->in($fileLocationPath)->name($fileName)->files();
-        $resultsCount = $files->count();
+        // Making sure there is a trailing slash at the end of the directory path
+        if (DIRECTORY_SEPARATOR !== substr($fileLocationPath, -1)) {
+            $fileLocationPath .= DIRECTORY_SEPARATOR;
+        }
+
+        try {
+            $files = $this->finder->files()->in($fileLocationPath)->name($fileName);
+            $resultsCount = $files->count();
+        } catch (DirectoryNotFoundException) {
+            $resultsCount = 0;
+        }
 
         if (0 === $resultsCount) {
             throw FileNotFoundException::create(sprintf(

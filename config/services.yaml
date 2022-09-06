@@ -1,3 +1,6 @@
+imports:
+  - { resource: 'services/*' }
+
 parameters:
   spreadsheet.configuration.allowed_sources:
     - file
