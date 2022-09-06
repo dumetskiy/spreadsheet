@@ -25,6 +25,8 @@ use Symfony\Component\Finder\SplFileInfo;
 ]
 class FileLoader implements DataLoaderInterface
 {
+    private const NO_NESTED_DIRECTORIES_DEPTH_LEVEL = '== 0';
+
     private Finder $finder;
 
     public function __construct() {
@@ -42,7 +44,7 @@ class FileLoader implements DataLoaderInterface
         }
 
         try {
-            $files = $this->finder->files()->in($fileLocationPath)->name($fileName);
+            $files = $this->finder->files()->in($fileLocationPath)->name($fileName)->depth(self::NO_NESTED_DIRECTORIES_DEPTH_LEVEL);
             $resultsCount = $files->count();
         } catch (DirectoryNotFoundException) {
             $resultsCount = 0;

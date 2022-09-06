@@ -2,7 +2,7 @@
 .idea
 
 # Application
-.env.*
+.env.local
 
 secrets/*
 
