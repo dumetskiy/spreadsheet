@@ -1,6 +1,6 @@
 # Spreadsheet - Coding Task
 
-##Technologies used
+## Technologies used
 * PHP 8.1.1
 * Symfony 6.2
 * PHPUnit 9
@@ -8,21 +8,21 @@
 * php-cs-fixer
 * Docker
 
-##How to use?
+## How to use?
 
 You will need Docker installed on your machine in order to start the application.
 
-###Initial configuration
+### Initial configuration
 To start with, generate your Google API service account credentials json file and put it into `<project_dir>/secrets`.
 Default credentials filename is `google.json`. 
 If you want to use different filename you can configure it by overriding the `GOOGLE_API_CREDENTIALS_PATH` ENV variable. In order to do this create a local copy of a `.env` file (`cp .env .env.local`) and set the new value there.
 
-#Startup
+# Startup
 The application is designed to be an executable docker container meaning you can execute one operation at a time each time having a new temporary container instance created.
 
 In order to simplify the access to the most commonly used functionalities an entrypoint executable file `spreadsheet` and a number of scripts under `bin` directory were created.
 
-###Running the command
+### Running the command
 The command execution configuration is `./spreadsheet spreadsheet-upload [--destination=DESTINATION] [--data-type=DATA_TYPE] [--target-filename=TARGET_FILENAME] [-v] <file_source>`
 
 By default, the command will use an `XML` data type and will publish it at `google_sheets` destination so you can amend those options as well as the `target_filename`.
@@ -52,7 +52,7 @@ Or with different data types and destinations:
 `./spreadsheet spreadsheet-upload -v --destination=some_destination --data-type=yaml ftp://user:password@host/data/test.yaml`
 
 
-###Running tests
+### Running tests
 
 The application code is covered (unfortunately just partially) with unit and functional tests powered by PHPUnit 9.
 
@@ -60,7 +60,7 @@ In order to run tests you can use the following command:
 
 `./spreadsheet phpunit`
 
-###Running static analysis
+### Running static analysis
 
 The application code is enabled with a PHPStan static analysis tool with a full support of it's level 8 checks (https://phpstan.org/user-guide/rule-levels).
 
@@ -68,7 +68,7 @@ In order to run the analysis you can use the following command:
 
 `./spreadsheet phpstan-analyse`
 
-###Running php-cs-fixer
+### Running php-cs-fixer
 
 php-cs-fixer is configured to check the code style with a set of rules extended with `Symfony` and `Symfony:risky` rule groups.
 
@@ -76,11 +76,11 @@ In order to run the dry-run mode inspection you can use the following command:
 
 `./spreadsheet php-cs-check`
 
-###Rebuilding the image
+### Rebuilding the image
 
 In case you have made changes to the code or configurations and wish to force rebuild the docker image you can use the build script by running `./build`
 
-##Comments and considerations
+## Comments and considerations
 
 Unfortunately I had really few time to work on the task (just the weekend and a couple of nights during the week) which for me seems to not be enough to reach perfection :)
 This is why I had to choose between attempting to implement the task logic itself deeper and spending more time on the application design, configurability and extensibility. 
@@ -99,7 +99,7 @@ Unfortunately this is something I had to sacrifice for the sake of time and some
 There is no limit of perfection, this task can be done within one evening, or it can take weeks depending on how well-designed and detailed you want it to be. 
 But within a limited time frame the best thing you can do is to decide what are the most important features you can fit into it and do your best to meet the deadline.
 
-##How it works
+## How it works
 
 The application was designed with a purpose of maximum flexibility and extensibility. 
 This is why the whole flow was separated into 3 steps:
