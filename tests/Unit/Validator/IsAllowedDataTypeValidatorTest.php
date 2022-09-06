@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Spreadsheet\Tests\Unit\Validator;
 
-use Google\Service\Analytics\Resource\Data;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Spreadsheet\Enum\DataType;

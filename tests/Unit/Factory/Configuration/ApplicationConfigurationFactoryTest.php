@@ -47,6 +47,7 @@ class ApplicationConfigurationFactoryTest extends TestCase
     ): ApplicationConfigurationFactory {
         return new ApplicationConfigurationFactory($allowedSourceHandles, $allowedDestinationHandles, $allowedDataTypeHandles);
     }
+
     private function getValidApplicationConfigurations(): array
     {
         return [

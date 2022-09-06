@@ -1,2 +1,4 @@
 #!/bin/sh
+
+echo "Running PHPStan analysis..."
 vendor/bin/phpstan analyse

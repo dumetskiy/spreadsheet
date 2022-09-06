@@ -13,7 +13,7 @@ use Spreadsheet\ValueObject\SpreadsheetFile;
 class FileLoaderTest extends ContainerAwareKernelTestCase
 {
     private const TESTS_ROOT_DIR = __DIR__ . '/../..';
-    
+
     private FileLoader $fileLoader;
 
     protected function setUp(): void

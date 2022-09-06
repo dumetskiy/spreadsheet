@@ -5,7 +5,7 @@ parameters:
   spreadsheet.google.api.config:
     scopes: '%spreadsheet.google.api.scopes%'
     credentials: '%spreadsheet.google.api.credentials_path%'
-  spreadsheet.google.api.sheet.chunk_size: 100
+  spreadsheet.google.api.sheet.chunk_size: 500
 
 services:
   _defaults:

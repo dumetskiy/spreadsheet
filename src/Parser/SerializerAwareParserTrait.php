@@ -14,6 +14,7 @@ trait SerializerAwareParserTrait
 {
     /**
      * @phpstan-ignore-next-line
+     *
      * @var SerializerInterface|DecoderInterface
      */
     protected SerializerInterface $serializer;

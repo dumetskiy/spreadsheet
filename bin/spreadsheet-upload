@@ -1,2 +1,4 @@
 #!/bin/sh
+
+echo "Running the spreadsheet upload command..."
 ./bin/console spreadsheet:upload $*

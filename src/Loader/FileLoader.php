@@ -37,8 +37,8 @@ class FileLoader implements DataLoaderInterface
         $fileLocationPath = pathinfo($fileSource, \PATHINFO_DIRNAME);
 
         // Making sure there is a trailing slash at the end of the directory path
-        if (DIRECTORY_SEPARATOR !== substr($fileLocationPath, -1)) {
-            $fileLocationPath .= DIRECTORY_SEPARATOR;
+        if (\DIRECTORY_SEPARATOR !== substr($fileLocationPath, -1)) {
+            $fileLocationPath .= \DIRECTORY_SEPARATOR;
         }
 
         try {

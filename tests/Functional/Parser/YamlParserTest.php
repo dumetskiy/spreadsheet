@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Spreadsheet\Tests\Functional\Parser;
 
 use Spreadsheet\Enum\DataType;
-use Spreadsheet\Parser\XmlParser;
 use Spreadsheet\Parser\YamlParser;
 
 class YamlParserTest extends AbstractParserTest
@@ -22,7 +21,7 @@ class YamlParserTest extends AbstractParserTest
         return [
             [
                 'key1:
-                    key2: value1   
+                    key2: value1
                 ',
                 ['key1' => ['key2' => 'value1']],
                 ['125:', [125 => null]],

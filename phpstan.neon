@@ -16,3 +16,4 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     ignoreErrors:
         - '#^Cannot call method [a-z]+() on Psr\\Log\\LoggerInterface|null.$#'
+        - '#^Variable \$files might not be defined.$#'

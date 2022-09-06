@@ -1,7 +1,12 @@
 #!/bin/sh
 
-docker build -t spreadsheet:latest .
+# Checking if the image is already built and if no, building
+if [[ "$(docker images -q spreadsheet:latest 2> /dev/null)" == "" ]]; then
+  echo "Building the latest image version..."
+  docker build -t spreadsheet:latest .
+fi
 
+echo "Running the container command..."
 docker run --rm \
 --volume $PWD:/app \
 spreadsheet:latest "$@"

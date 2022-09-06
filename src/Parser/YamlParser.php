@@ -23,6 +23,7 @@ class YamlParser implements DataParserInterface
         if (!is_array($spreadsheetData) || empty($spreadsheetData)) {
             throw ParserException::create('Source file content data structure is not applicable as a spreadsheet.');
         }
+
         return new Spreadsheet($spreadsheetFile, $spreadsheetData);
     }
 }

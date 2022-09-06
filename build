@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Building the latest image version..."
+docker build -t spreadsheet:latest .
